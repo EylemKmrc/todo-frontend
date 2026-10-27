@@ -17,5 +17,20 @@ export class BackendService {
     return categories;
   }
 
+  //Create a new Todo
+  async create(newTodo: { title: string; category: string; dueDate?: string }) {
+    let response = await fetch(this.apiURL + '/todos', {
+      method: 'POST',
+      body: JSON.stringify(newTodo),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    let todo = await response.json();
+    return todo;
+  }
+
+
 
 }
