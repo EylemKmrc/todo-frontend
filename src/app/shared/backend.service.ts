@@ -40,6 +40,12 @@ export class BackendService {
     return todos;
   }
 
+  // Get one Todo per id
+  async getOne(id: string): Promise<Todo> {
+    let response = await fetch(this.apiURL + '/todos/' + id);
+    let todo = await response.json();
+    return todo;
+  }
 
 
 }
