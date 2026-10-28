@@ -1,59 +1,211 @@
-# TodoFrontend
+# ToDo - Dein neuer bester Freund für den Alltag
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.10.
+## Inhaltsverzeichnis
 
-## Development server
+- [Projektbeschreibung](#projektbeschreibung)
+- [Funktionen](#funktionen)
+- [Technologien](#technologien)
+- [Screenshots](#screenshots)
+- [Installation](#installation)
+- [API-Endpunkte](#api-endpunkte)
+- [KI-Verzeichnis](#ki-verzeichnis)
+- [Autoren](#autoren)
 
-To start a local development server, run:
+
+
+## Projektbeschreibung
+
+Die To-do-Anwendung hilft dabei, persönliche Aufgaben übersichtlich zu organisieren. Einträge werden in einer Datenbank gespeichert und können erstellt, angezeigt, bearbeitet und gelöscht werden. In der Übersicht sind die To-dos nach ihrem Status in die Spalten „Offen“, „In Bearbeitung“ und „Erledigt“ eingeteilt.
+
+## Funktionen
+
+Die ToDo App bietet folgende Funktionen:
+
+- **To-do erstellen:** 
+  - Ein neuer Eintrag wird mit Titel, Kategorie und optionalem Fälligkeitsdatum angelegt. Der Status ist zunächst „offen“.
+
+- **To-dos anzeigen:** 
+  - Alle gespeicherten Einträge werden in einer Übersicht nach ihrem Status sortiert.
+
+- **To-do bearbeiten:** 
+  - Über das Stift-Symbol auf einer Karte öffnet sich die Bearbeitungsansicht. Titel, Kategorie, Fälligkeitsdatum und Status können geändert und gespeichert werden.
+
+- **Status ändern:** 
+  - Der Status wird in der Bearbeitungsansicht ausgewählt. Die Änderung wird erst übernommen, wenn auf „Speichern“ geklickt wird.
+
+- **To-do löschen:** 
+  - Über das Mülleimer-Symbol kann ein Eintrag gelöscht werden. Vor dem Löschen erscheint eine Bestätigungsabfrage.
+- **Responsives Design:** 
+  - Bootstrap passt die Darstellung an verschiedene Bildschirmgrößen an.
+
+
+## Technologien
+
+Für die Entwicklung der ToDo App wurden folgende Technologien eingesetzt:
+
+| Technologie                 | Verwendung                                              |
+|-----------------------------|---------------------------------------------------------|
+| **Angular**                 | Entwicklung des Frontends und der Benutzeroberfläche    |
+| **Bootstrap (Bootswatch minty)** | Responsives Design und Gestaltung der Benutzeroberfläche |
+| **Node.js**                 | Umsetzung des Backends und der REST-API                     |
+| **MongoDB und Mongoose**        | Speicherung und Verwaltung der To-dos                                   |
+| **TypeScript**                | Programmiersprache für das Angular-Frontend                               |
+| **Git & GitHub**            | Versionsverwaltung                                      |
+| **Postman**                 | Testen der API-Endpunkte                                |
+
+
+
+## Screenshots
+### Startseite
+Nach dem Start der Anwendung gelangt der Benutzer zunächst auf die Willkommensseite. Über den Button **„Ersten Eintrag erstellen“** kann direkt eine neue Todo angelegt werden.
+
+<p align="center">
+  <img src="screenshots/01-startseite.png" width="70%">
+</p>
+
+---
+### Neuen Eintrag erstellen
+
+Im Formular werden Titel, Kategorie und optional ein Fälligkeitsdatum eingegeben.
+
+<p align="center">
+  <img src="screenshots/02-todo-erstellen.png" width="70%">
+</p>
+
+---
+
+Die Kategorien werden vom Backend geladen und im Auswahlmenü angezeigt.
+
+<p align="center">
+  <img src="screenshots/03-kategorie-auswaehlen.png" width="70%">
+</p>
+
+---
+
+Für das Fälligkeitsdatum steht ein integrierter Kalender zur Verfügung.
+
+<p align="center">
+  <img src="screenshots/04-datum-auswaehlen.png" width="70%">
+</p>
+
+---
+### To-do-Übersicht
+
+Die Einträge werden nach ihrem Status in die Spalten „Offen“, „In Bearbeitung“ und „Erledigt“ eingeteilt. Über die Symbole auf einer Karte kann ein Eintrag bearbeitet oder gelöscht werden.
+
+<p align="center">
+  <img src="screenshots/05-todo-uebersicht.png" width="70%">
+</p>
+
+---
+### Todo bearbeiten
+
+In der Bearbeitungsansicht können Titel, Kategorie, Fälligkeitsdatum und Status geändert werden. Die Änderungen werden über den Speichern-Button übernommen.
+
+<p align="center">
+  <img src="screenshots/07-todo-bearbeiten.png" width="70%">
+</p>
+
+Nach dem Speichern werden die Änderungen direkt übernommen und in der Todo Übersicht angezeigt.
+
+--- 
+### To-do löschen
+
+Vor dem Löschen erscheint eine Bestätigungsabfrage.
+
+<p align="center">
+  <img src="screenshots/06-todo-loeschen.png" width="70%">
+</p>
+
+
+
+## Installation
+
+### Voraussetzungen
+
+Für die Anwendung werden benötigt:
+
+- [Node.js und npm](https://nodejs.org/ )
+- Eine MongoDB-Datenbank
+- Git
+
+### Repositories klonen
+
+Klone beide Repositories
 
 ```bash
-ng serve
+git clone https://github.com/EylemKmrc/todo-frontend.git
+git clone https://github.com/EylemKmrc/todo-backend.git
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### MongoDB-Verbindung konfigurieren
 
-## Code scaffolding
+Lege im Ordner `todo-backend` eine Datei mit dem Namen `.env` an. Trage dort deine MongoDB-Verbindungsdaten und den Datenbanknamen ein:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+```dotenv
+DB_CONNECTION=mongodb+srv://<BENUTZERNAME>:<PASSWORT>@<CLUSTER-URL>/DATABASE=todoDatabase
+```
+
+Ersetze die Platzhalter durch deine eigenen Werte. Die Datei `.env` enthält vertrauliche Zugangsdaten und darf nicht auf git zb. veröffentlicht oder gepusht werden.
+
+### Backend starten
+
+Öffne ein Terminal und führe folgende Befehle aus:
 
 ```bash
-ng generate component component-name
+cd todo-backend
+npm install
+node src/server.js
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Das Backend läuft anschließend unter `http://localhost:3000`.
+
+### Frontend starten
+
+Öffne ein zweites Terminal und führe folgende Befehle aus:
 
 ```bash
-ng generate --help
+cd todo-frontend
+npm install
+npm start
 ```
 
-## Building
+Das Frontend ist anschließend unter `http://localhost:4200` erreichbar. Öffne diese Adresse im Browser.
 
-To build the project run:
 
-```bash
-ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+## API-Endpunkte
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Die Kommunikation zwischen Frontend und Backend erfolgt über eine REST-API.
 
-```bash
-ng test
-```
+| Methode | Endpunkt | Beschreibung                                  |
+|----------|----------|-----------------------------------------------|
+| **GET** | `/todos` | Ruft alle vorhandenen Todos ab.               |
+| **GET** | `/todos/:id` | Ruft eine bestimmte Todo anhand seiner ID ab. |
+| **POST** | `/todos` | Erstellt eine neue Todo.                      |
+| **PATCH** | `/todos/:id` | Aktualisiert die Daten einer vorhandenen Todo. |
+| **DELETE** | `/todos/:id` | Löscht eine Todo anhand seiner ID.            |
+| **GET** | `/categories` | Gibt alle verfügbaren Kategorien zurück.      |
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
+## KI-Verzeichnis
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Bei der Entwicklung des Projekts wurden KI-Werkzeuge verwendet. Die Anwendung wurde schrittweise selbst umgesetzt. Die KI-Unterstützung diente vor allem dazu, den Code gut zu verstehen und Fehler zu beheben.
 
-## Additional Resources
+KI wurde für folgende Aufgaben genutzt:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Unterstützung bei der Recherche von Bootstrap-Komponenten, Bootstrap-Icons und CSS-Klassen
+- Vorschläge zu Bootstrap-Klassen und zur Gestaltung der Benutzeroberfläche
+- Hilfe bei der Fehlersuche und beim Verständnis von Fehlermeldungen
+- Unterstützung beim Formulieren und Überarbeiten der README
+- Erstellung von Beispieldaten für Tests 
+
+
+## Autoren
+Dieses Projekt wurde im Rahmen des Moduls **WebTech** an der **HTW Berlin** entwickelt.
+
+**Autorin:**
+
+Eylem Kömürcü
