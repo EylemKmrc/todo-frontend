@@ -3,6 +3,7 @@ import {Todo} from '../shared/todo';
 import {ActivatedRoute} from '@angular/router';
 import {BackendService} from '../shared/backend.service';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-todo',
@@ -15,6 +16,8 @@ export class EditTodo implements OnInit {
   private route = inject(ActivatedRoute);
   private bs = inject(BackendService);
   categories: string[] = [];
+  private router = inject(Router);
+
 
   todo?: Todo;
 
@@ -44,4 +47,20 @@ export class EditTodo implements OnInit {
         });
     }
   }
+
+  // Update Todo
+  update(): void {
+    const values = this.form.value;
+
+    if (this.todo) {
+      this.todo.title = values.titleControl || '';
+      this.todo.category = values.categoryControl || '';
+      this.todo.dueDate = values.dueDateControl || '';
+
+      this.bs.update(this.todo._id, this.todo)
+        .then(() => this.router.navigate(['/todos']));
+    }
+  }
+
+
 }

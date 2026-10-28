@@ -2,7 +2,7 @@
   <div class="col-12 col-md-10 col-lg-8">
     <div class="card shadow p-5">
 
-      <form [formGroup]="form">
+      <form [formGroup]="form" (ngSubmit)="update()">
       <h2>Eintrag bearbeiten</h2>
 
       <div class="mb-3">
@@ -39,7 +39,7 @@
       </div>
 
       <div class="text-end mt-4">
-        <button type="button" class="btn btn-primary">Speichern</button>
+        <button type="submit" class="btn btn-primary">Speichern</button>
       </div>
 
       </form>

@@ -47,5 +47,21 @@ export class BackendService {
     return todo;
   }
 
+  // Update a Todo
+  async update(id: string, updateData: Todo): Promise<Todo> {
+    let response = await fetch(this.apiURL + '/todos/' + id, {
+      method: 'PATCH',
+      body: JSON.stringify(updateData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    let todo = await response.json();
+    return todo;
+  }
+
+
+
 
 }
