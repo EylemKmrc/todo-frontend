@@ -23,5 +23,16 @@ export class TodoList implements OnInit{
     );
 }
 
+//Delete a todo per id
+  deleteOne(id: string): void {
+    if (confirm('Möchtest du die To-do wirklich löschen?')) {
+      this.bs.deleteOne(id).then(() => {
+        this.todos = this.todos.filter(todo => todo._id !== id);
+      });
+    }
+  }
+
+
+
 
 }

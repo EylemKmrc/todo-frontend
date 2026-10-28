@@ -61,6 +61,13 @@ export class BackendService {
     return todo;
   }
 
+  // Delete a Todo
+  async deleteOne(id: string): Promise<void> {
+    await fetch(this.apiURL + '/todos/' + id, {
+      method: 'DELETE',
+    });
+  }
+
 
 
 
