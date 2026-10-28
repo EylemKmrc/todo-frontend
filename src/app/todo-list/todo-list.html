@@ -6,6 +6,16 @@
       <div class="card shadow p-3">
         <h2 class="text-center">Offen</h2>
 
+        @for (todo of todos; track todo._id) {
+          @if (todo.status === 'offen') {
+            <div class="card p-3 mb-3">
+              <h5>{{ todo.title }}</h5>
+              <p class="mb-1">{{ todo.category }}</p>
+              <p class="mb-0">Status: {{ todo.status }}</p>
+            </div>
+          }
+        }
+
       </div>
     </div>
 
@@ -13,12 +23,32 @@
       <div class="card shadow p-3">
         <h2 class="text-center">In Bearbeitung</h2>
 
+        @for (todo of todos; track todo._id) {
+          @if (todo.status === 'in Bearbeitung') {
+            <div class="card p-3 mb-3">
+              <h5>{{ todo.title }}</h5>
+              <p class="mb-1">{{ todo.category }}</p>
+              <p class="mb-0">Status: {{ todo.status }}</p>
+            </div>
+          }
+        }
+
       </div>
     </div>
 
     <div class="col-md-4 mb-3">
       <div class="card shadow p-3">
         <h2 class="text-center">Erledigt</h2>
+
+        @for (todo of todos; track todo._id) {
+          @if (todo.status === 'erledigt') {
+            <div class="card p-3 mb-3">
+              <h5>{{ todo.title }}</h5>
+              <p class="mb-1">{{ todo.category }}</p>
+              <p class="mb-0">Status: {{ todo.status }}</p>
+            </div>
+          }
+        }
 
       </div>
     </div>
