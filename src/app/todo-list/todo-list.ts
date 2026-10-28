@@ -1,10 +1,13 @@
 import {Component, inject, OnInit} from '@angular/core';
 import { BackendService } from '../shared/backend.service';
 import { Todo } from '../shared/todo';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-todo-list',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.css',
 })
