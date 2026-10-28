@@ -25,6 +25,7 @@ export class EditTodo implements OnInit {
     titleControl: new FormControl<string>(''),
     categoryControl: new FormControl<string>(''),
     dueDateControl: new FormControl<string>(''),
+    statusControl: new FormControl<string>(''),
   });
 
   //Get one Todo per id
@@ -40,6 +41,7 @@ export class EditTodo implements OnInit {
             titleControl: todo.title,
             categoryControl: todo.category,
             dueDateControl: todo.dueDate?.substring(0, 10) || '',
+            statusControl: todo.status,
           });
           this.bs.getCategories().then(
             categories => this.categories = categories
@@ -56,6 +58,7 @@ export class EditTodo implements OnInit {
       this.todo.title = values.titleControl || '';
       this.todo.category = values.categoryControl || '';
       this.todo.dueDate = values.dueDateControl || '';
+      this.todo.status = values.statusControl || '';
 
       this.bs.update(this.todo._id, this.todo)
         .then(() => this.router.navigate(['/todos']));
